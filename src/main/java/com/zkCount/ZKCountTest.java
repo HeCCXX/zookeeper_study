@@ -8,8 +8,6 @@ import org.apache.curator.framework.recipes.shared.SharedCountListener;
 import org.apache.curator.framework.recipes.shared.SharedCountReader;
 import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-
-import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;

@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @ClassName ZKBarrierTest
  * @Description 栅栏Barrier,类似juc 的 CyclicBarrier，它会阻塞所有节点上的等待线程，直到某一条件达到，然后让所有节点恢复运行
+ * 在本实例中，创建barrier来设置和移除栅栏，创建5个线程，在各个线程的barrier1中阻塞，最后移除barrier，运行所有线程运行
  * @Author 贺楚翔
  * @Date 2020-06-17 14:38
  * @Version 1.0
