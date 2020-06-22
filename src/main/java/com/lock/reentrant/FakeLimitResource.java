@@ -1,4 +1,4 @@
-package com.lock;
+package com.lock.reentrant;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

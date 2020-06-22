@@ -1,4 +1,4 @@
-package com.lock;
+package com.lock.reentrant;
 
 
 import org.apache.curator.framework.CuratorFramework;

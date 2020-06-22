@@ -1,4 +1,4 @@
-package com.lock;
+package com.lock.reentrant;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
@@ -32,14 +32,33 @@ public class ExampleClientThatLocks {
     * @exception
     **/
     public void doWork(long time, TimeUnit unit) throws Exception {
+//        if (!lock.acquire(time,unit)){
+//            throw new IllegalStateException(clientName + " could not acquire this lock");
+//        }
+//        try {
+//            System.out.println(clientName + " has the lock");
+//            resource.use();
+//        } finally {
+//            System.out.println(clientName + " releasing the lock ");
+//            lock.release();
+//        }
+
+        /**
+        * 测试可重入
+        **/
         if (!lock.acquire(time,unit)){
             throw new IllegalStateException(clientName + " could not acquire this lock");
         }
+        System.out.println(clientName + " has the lock");
+        if (!lock.acquire(time,unit)){
+            throw new IllegalStateException(clientName + " could not acquire this lock");
+        }
+        System.out.println(clientName +" has the lock again");
         try {
-            System.out.println(clientName + " has the lock");
             resource.use();
-        } finally {
-            System.out.println(clientName + " releasing the lock ");
+        }finally {
+            System.out.println(clientName + " releasing the lock");
+            lock.release();
             lock.release();
         }
     }
