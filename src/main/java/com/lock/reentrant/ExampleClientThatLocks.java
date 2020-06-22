@@ -2,6 +2,7 @@ package com.lock.reentrant;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
+import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreMutex;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @Version 1.0
  **/
 public class ExampleClientThatLocks {
+    //InterProcessSemaphoreMutex 当设置为不可重入，在运行，会发现进程阻塞
     private final InterProcessMutex lock;
     private final FakeLimitResource resource;
     private final String clientName;
