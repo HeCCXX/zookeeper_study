@@ -36,10 +36,12 @@ public class InterProcessMutexExample {
             for (int i = 0; i < QTY; i++) {
                 final int index = i;
                 executor.submit(()->{
+                    // 每个线程创建一个client
                     final CuratorFramework client = CuratorFrameworkFactory.newClient(server.getConnectString(), new ExponentialBackoffRetry(2000, 3));
                     try {
                         client.start();
                         final ExampleClientThatLocks example = new ExampleClientThatLocks(client, PATH, fakeLimitResource, "Client #" + index);
+                        //每个线程重复50次获取资源，输出结果
                         for (int j = 0; j < REPETITIONS; j++) {
                             example.doWork(10,TimeUnit.SECONDS);
                         }

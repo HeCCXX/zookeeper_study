@@ -23,6 +23,14 @@ public class ExampleClientThatLocks {
         lock = new InterProcessMutex(client, lockpath);
     }
 
+    /**
+    * 获取锁、访问资源、释放锁，获取锁利用acquire(long time, TimeUnit unit)设置延时获取，当等待时间结束
+    * blocks until it's available or the given time expires 阻塞直到可用或者等待时间到达
+    * @param time
+    * @param unit
+    * @return void
+    * @exception
+    **/
     public void doWork(long time, TimeUnit unit) throws Exception {
         if (!lock.acquire(time,unit)){
             throw new IllegalStateException(clientName + " could not acquire this lock");
